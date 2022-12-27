@@ -39,3 +39,6 @@ A collection of snippets using Node-RED:
 
 - 13_IFTTT
 ![13_IFTTT](png/13.png)
+
+---
+These snippets were used in the course "Responsive Environments - Designing Interactive, Sentient, and Intelligent Spaces", at NYU Shanghai, Fall 2022
