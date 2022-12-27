@@ -1,0 +1,292 @@
+[
+    {
+        "id": "b8f4fd3577388fa6",
+        "type": "tab",
+        "label": "Sentiment Analysis (MQTT)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fa85a07e03e17a71",
+        "type": "mqtt in",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "topic": "/SENTIMENT/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e83622a12bcad81b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 130,
+        "y": 140,
+        "wires": [
+            [
+                "75f5c46795bab282"
+            ]
+        ]
+    },
+    {
+        "id": "75f5c46795bab282",
+        "type": "sentiment",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "property": "payload",
+        "x": 300,
+        "y": 140,
+        "wires": [
+            [
+                "9540eec5a94ca29b"
+            ]
+        ]
+    },
+    {
+        "id": "e9294835b6bb0548",
+        "type": "mqtt out",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "topic": "/SentimentResult/",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e83622a12bcad81b",
+        "x": 730,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "4c02e6e971b17f8d",
+        "type": "inject",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "6",
+        "payloadType": "num",
+        "x": 470,
+        "y": 280,
+        "wires": [
+            [
+                "e9294835b6bb0548"
+            ]
+        ]
+    },
+    {
+        "id": "1dd111c760871058",
+        "type": "inject",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 470,
+        "y": 320,
+        "wires": [
+            [
+                "e9294835b6bb0548"
+            ]
+        ]
+    },
+    {
+        "id": "0451aabc5ab88cf5",
+        "type": "inject",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "-6",
+        "payloadType": "num",
+        "x": 470,
+        "y": 360,
+        "wires": [
+            [
+                "e9294835b6bb0548"
+            ]
+        ]
+    },
+    {
+        "id": "9540eec5a94ca29b",
+        "type": "function",
+        "z": "b8f4fd3577388fa6",
+        "name": "function (get score)",
+        "func": "msg.payload = msg.sentiment.score;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 490,
+        "y": 140,
+        "wires": [
+            [
+                "e9294835b6bb0548",
+                "6f60c7348e4c1893"
+            ]
+        ]
+    },
+    {
+        "id": "6f60c7348e4c1893",
+        "type": "debug",
+        "z": "b8f4fd3577388fa6",
+        "name": "debug 27",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sentiment.score",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "59411cc24572ef4c",
+        "type": "inject",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "12",
+        "payloadType": "num",
+        "x": 470,
+        "y": 240,
+        "wires": [
+            [
+                "e9294835b6bb0548"
+            ]
+        ]
+    },
+    {
+        "id": "090cfd71533b6356",
+        "type": "inject",
+        "z": "b8f4fd3577388fa6",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "-12",
+        "payloadType": "num",
+        "x": 470,
+        "y": 400,
+        "wires": [
+            [
+                "e9294835b6bb0548"
+            ]
+        ]
+    },
+    {
+        "id": "01713ae98e401ec0",
+        "type": "comment",
+        "z": "b8f4fd3577388fa6",
+        "name": "In this example, the message that arrives on the MQTT broker on a specific topic, is analyzed for its sentiment, and the score result is sent back to the broker on a different topic",
+        "info": "",
+        "x": 640,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "6cdc77fb50e0d9b7",
+        "type": "comment",
+        "z": "b8f4fd3577388fa6",
+        "name": "Numerical test values (positive/negative)",
+        "info": "",
+        "x": 560,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "e83622a12bcad81b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "Example",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

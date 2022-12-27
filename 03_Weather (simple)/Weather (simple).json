@@ -1,0 +1,275 @@
+[
+    {
+        "id": "7d3fc5028a96fed2",
+        "type": "tab",
+        "label": "Weather (simple)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "860887c0613b184d",
+        "type": "comment",
+        "z": "7d3fc5028a96fed2",
+        "name": "Click to trigger (in flow)",
+        "info": "",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "7c8214420e78cb61",
+        "type": "comment",
+        "z": "7d3fc5028a96fed2",
+        "name": "Set city info",
+        "info": "",
+        "x": 370,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a5e28efb8129f4c1",
+        "type": "inject",
+        "z": "7d3fc5028a96fed2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 120,
+        "wires": [
+            [
+                "d9c392b61e5c15b8"
+            ]
+        ]
+    },
+    {
+        "id": "d9c392b61e5c15b8",
+        "type": "openweathermap",
+        "z": "7d3fc5028a96fed2",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Shanghai",
+        "country": "China",
+        "language": "en",
+        "x": 360,
+        "y": 120,
+        "wires": [
+            [
+                "b0453a21a2eab6ac"
+            ]
+        ]
+    },
+    {
+        "id": "08b289c088abfcfd",
+        "type": "debug",
+        "z": "7d3fc5028a96fed2",
+        "name": "debug (show tempc value)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "b0453a21a2eab6ac",
+        "type": "function",
+        "z": "7d3fc5028a96fed2",
+        "name": "function (get tempc)",
+        "func": "msg.payload = msg.payload.tempc;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 120,
+        "wires": [
+            [
+                "08b289c088abfcfd"
+            ]
+        ]
+    },
+    {
+        "id": "bdbb846cd6aff38c",
+        "type": "comment",
+        "z": "7d3fc5028a96fed2",
+        "name": "Show number on Debug panel",
+        "info": "",
+        "x": 830,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "bdddfadd2a943847",
+        "type": "comment",
+        "z": "7d3fc5028a96fed2",
+        "name": "Function to get number",
+        "info": "",
+        "x": 560,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "2213c2cd0a96179d",
+        "type": "inject",
+        "z": "7d3fc5028a96fed2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 260,
+        "wires": [
+            [
+                "9e1380eef1aea896"
+            ]
+        ]
+    },
+    {
+        "id": "63a7578504118a63",
+        "type": "debug",
+        "z": "7d3fc5028a96fed2",
+        "name": "debug 29",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9e1380eef1aea896",
+        "type": "http request",
+        "z": "7d3fc5028a96fed2",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=Shanghai&units=metric&appid=6b4a465ac9894c63172283b3f271c20c",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 350,
+        "y": 260,
+        "wires": [
+            [
+                "cd1cd892fe6547b0"
+            ]
+        ]
+    },
+    {
+        "id": "076f50bbc0cb0e9f",
+        "type": "comment",
+        "z": "7d3fc5028a96fed2",
+        "name": "Get weather from an HTTP request",
+        "info": "",
+        "x": 240,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "3fc99670670f136c",
+        "type": "function",
+        "z": "7d3fc5028a96fed2",
+        "name": "function (get main.temp)",
+        "func": "msg.payload = msg.payload.main.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 710,
+        "y": 260,
+        "wires": [
+            [
+                "63a7578504118a63"
+            ]
+        ]
+    },
+    {
+        "id": "b60cc5c2d38e682a",
+        "type": "debug",
+        "z": "7d3fc5028a96fed2",
+        "name": "debug 30",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "cd1cd892fe6547b0",
+        "type": "json",
+        "z": "7d3fc5028a96fed2",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "3fc99670670f136c",
+                "b60cc5c2d38e682a"
+            ]
+        ]
+    },
+    {
+        "id": "3853861f8bfe0ff2",
+        "type": "comment",
+        "z": "7d3fc5028a96fed2",
+        "name": "https://mkt-sampath97.medium.com/enhance-your-iot-application-with-external-apis-f3930101f35b",
+        "info": "",
+        "x": 440,
+        "y": 340,
+        "wires": []
+    }
+]

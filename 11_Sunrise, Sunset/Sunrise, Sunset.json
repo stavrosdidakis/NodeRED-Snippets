@@ -1,0 +1,235 @@
+[
+    {
+        "id": "cd414a84d714a4d2",
+        "type": "tab",
+        "label": "Sunrise / Sunset",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2addc54c7b2e424f",
+        "type": "sunrise",
+        "z": "cd414a84d714a4d2",
+        "name": "",
+        "lat": "31.230391",
+        "lon": "121.473701",
+        "start": "sunrise",
+        "end": "sunset",
+        "soff": 0,
+        "eoff": 0,
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [],
+            [
+                "c2e646bfd7ed4fbf"
+            ]
+        ]
+    },
+    {
+        "id": "c2e646bfd7ed4fbf",
+        "type": "debug",
+        "z": "cd414a84d714a4d2",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "f061062cd95fc91b",
+        "type": "debug",
+        "z": "cd414a84d714a4d2",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "a37f170edad1e6fe",
+        "type": "mqtt out",
+        "z": "cd414a84d714a4d2",
+        "name": "",
+        "topic": "",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "x": 290,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "21d8dfe4c81920a4",
+        "type": "sunrise",
+        "z": "cd414a84d714a4d2",
+        "name": "",
+        "lat": "31.2304",
+        "lon": "121.4737",
+        "start": "sunrise",
+        "end": "sunset",
+        "soff": 0,
+        "eoff": 0,
+        "x": 130,
+        "y": 280,
+        "wires": [
+            [],
+            [
+                "f061062cd95fc91b"
+            ]
+        ]
+    },
+    {
+        "id": "88d2831a953d7845",
+        "type": "comment",
+        "z": "cd414a84d714a4d2",
+        "name": "Shanghai, China",
+        "info": "",
+        "x": 140,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "66b4174ae61a3295",
+        "type": "comment",
+        "z": "cd414a84d714a4d2",
+        "name": "Athens, Greece",
+        "info": "",
+        "x": 140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "521dc3fd08c3541c",
+        "type": "sunrise",
+        "z": "cd414a84d714a4d2",
+        "name": "",
+        "lat": "40.7128",
+        "lon": "74.0060",
+        "start": "sunrise",
+        "end": "sunset",
+        "soff": 0,
+        "eoff": 0,
+        "x": 530,
+        "y": 160,
+        "wires": [
+            [],
+            [
+                "3c55f752335898e6"
+            ]
+        ]
+    },
+    {
+        "id": "3c55f752335898e6",
+        "type": "debug",
+        "z": "cd414a84d714a4d2",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c0e326516caad59c",
+        "type": "comment",
+        "z": "cd414a84d714a4d2",
+        "name": "New York, US",
+        "info": "",
+        "x": 530,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "642f4a9efd4105e2",
+        "type": "sunrise",
+        "z": "cd414a84d714a4d2",
+        "name": "",
+        "lat": "51.5072",
+        "lon": "0.1276",
+        "start": "sunrise",
+        "end": "sunset",
+        "soff": 0,
+        "eoff": 0,
+        "x": 530,
+        "y": 280,
+        "wires": [
+            [],
+            [
+                "4e76040699e4f7b1"
+            ]
+        ]
+    },
+    {
+        "id": "4e76040699e4f7b1",
+        "type": "debug",
+        "z": "cd414a84d714a4d2",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "171ba7cae5bf7bed",
+        "type": "comment",
+        "z": "cd414a84d714a4d2",
+        "name": "London, UK",
+        "info": "",
+        "x": 530,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "17bc8b82ba28856c",
+        "type": "comment",
+        "z": "cd414a84d714a4d2",
+        "name": "Calculate sunrise and sunset for multiple geolocations",
+        "info": "",
+        "x": 260,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "fa71440de217f59b",
+        "type": "comment",
+        "z": "cd414a84d714a4d2",
+        "name": "Results can be sent to MQTT via different topics",
+        "info": "",
+        "x": 240,
+        "y": 80,
+        "wires": []
+    }
+]

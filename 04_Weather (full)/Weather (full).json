@@ -1,0 +1,757 @@
+[
+    {
+        "id": "618227bec0664813",
+        "type": "tab",
+        "label": "Weather (full)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2b9191f336f6a2ba",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 1r",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "5a8f4da3ada8e892",
+        "type": "openweathermap",
+        "z": "618227bec0664813",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Shanghai",
+        "country": "China",
+        "language": "en",
+        "x": 340,
+        "y": 280,
+        "wires": [
+            [
+                "d359cc00b346bacf",
+                "49012bd2f6f83118"
+            ]
+        ]
+    },
+    {
+        "id": "d359cc00b346bacf",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 6,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.tempc}}",
+        "layout": "col-center",
+        "className": "tempc",
+        "x": 530,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "ba9c9f11e3d7fb89",
+        "type": "inject",
+        "z": "618227bec0664813",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 280,
+        "wires": [
+            [
+                "5a8f4da3ada8e892"
+            ]
+        ]
+    },
+    {
+        "id": "c4f5c326fa06aa70",
+        "type": "ui_button",
+        "z": "618227bec0664813",
+        "name": "",
+        "group": "2e50d75e037caf5e",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Get Weather Data",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "5a8f4da3ada8e892",
+                "6c3b47b1c3bb6cc4",
+                "39ef1f3d69a5fae7",
+                "fc117f8f601682de"
+            ]
+        ]
+    },
+    {
+        "id": "d56e782559b61a90",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 2,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Shanghai",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 520,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "6c3b47b1c3bb6cc4",
+        "type": "openweathermap",
+        "z": "618227bec0664813",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "London",
+        "country": "UK",
+        "language": "en",
+        "x": 340,
+        "y": 420,
+        "wires": [
+            [
+                "4d5a7f3d7f72e793",
+                "19b9c2726af80d13"
+            ]
+        ]
+    },
+    {
+        "id": "4d5a7f3d7f72e793",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 7,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.tempc}}",
+        "layout": "col-center",
+        "className": "tempc",
+        "x": 530,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "31547fefb2d449f9",
+        "type": "inject",
+        "z": "618227bec0664813",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 420,
+        "wires": [
+            [
+                "6c3b47b1c3bb6cc4"
+            ]
+        ]
+    },
+    {
+        "id": "ccabfc1946674b61",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 3,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "London",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 520,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "39ef1f3d69a5fae7",
+        "type": "openweathermap",
+        "z": "618227bec0664813",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "New York",
+        "country": "US",
+        "language": "en",
+        "x": 340,
+        "y": 560,
+        "wires": [
+            [
+                "6b6914016b6b8c54",
+                "772430c29602f257"
+            ]
+        ]
+    },
+    {
+        "id": "6b6914016b6b8c54",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 8,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.tempc}}",
+        "layout": "col-center",
+        "className": "tempc",
+        "x": 530,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "957ecc78d07e6993",
+        "type": "inject",
+        "z": "618227bec0664813",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 560,
+        "wires": [
+            [
+                "39ef1f3d69a5fae7"
+            ]
+        ]
+    },
+    {
+        "id": "c2f991fc5cb86bf5",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 4,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "New York",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 520,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "fc117f8f601682de",
+        "type": "openweathermap",
+        "z": "618227bec0664813",
+        "name": "",
+        "wtype": "current",
+        "lon": "",
+        "lat": "",
+        "city": "Athens",
+        "country": "Greece",
+        "language": "en",
+        "x": 340,
+        "y": 700,
+        "wires": [
+            [
+                "4089225b54ea2459",
+                "f1fec1f9a1404116"
+            ]
+        ]
+    },
+    {
+        "id": "4089225b54ea2459",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 9,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Temperature",
+        "format": "{{msg.payload.tempc}}",
+        "layout": "col-center",
+        "className": "tempc",
+        "x": 530,
+        "y": 700,
+        "wires": []
+    },
+    {
+        "id": "0ad0165715e28214",
+        "type": "inject",
+        "z": "618227bec0664813",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 700,
+        "wires": [
+            [
+                "fc117f8f601682de"
+            ]
+        ]
+    },
+    {
+        "id": "72e0f4bbf27152c4",
+        "type": "ui_text",
+        "z": "618227bec0664813",
+        "group": "2e50d75e037caf5e",
+        "order": 5,
+        "width": 5,
+        "height": 1,
+        "name": "",
+        "label": "Athens",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 520,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "49012bd2f6f83118",
+        "type": "function",
+        "z": "618227bec0664813",
+        "name": "function 1",
+        "func": "let red = 0;\nlet green = 0;\nlet blue = 0;\n\nlet input = msg.payload.tempc;\n\nif (input < 5) {\n    red = { payload: 0 };\n    green = { payload: 50 };\n    blue = { payload: 255 };\n} else if (input >= 5 && input < 15) {\n    red = { payload: 0 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 15 && input < 20) {\n    red = { payload: 255 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 20 && input < 30) {\n    red = { payload: 255 };\n    green = { payload: 120 };\n    blue = { payload: 0 };\n} else {\n    red = { payload: 255 };\n    green = { payload: 0 };\n    blue = { payload: 0 };\n}\n\nreturn [red, green, blue];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 200,
+        "wires": [
+            [
+                "2b9191f336f6a2ba"
+            ],
+            [
+                "6c59f7cf45ca310e"
+            ],
+            [
+                "966bfa6b7273c78d"
+            ]
+        ]
+    },
+    {
+        "id": "6c59f7cf45ca310e",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 1g",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "966bfa6b7273c78d",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 1b",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "19b9c2726af80d13",
+        "type": "function",
+        "z": "618227bec0664813",
+        "name": "function 2",
+        "func": "let red = 0;\nlet green = 0;\nlet blue = 0;\n\nlet input = msg.payload.tempc;\n\nif (input < 5) {\n    red = { payload: 0 };\n    green = { payload: 50 };\n    blue = { payload: 255 };\n} else if (input >= 5 && input < 15) {\n    red = { payload: 0 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 15 && input < 20) {\n    red = { payload: 255 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 20 && input < 30) {\n    red = { payload: 255 };\n    green = { payload: 120 };\n    blue = { payload: 0 };\n} else {\n    red = { payload: 255 };\n    green = { payload: 0 };\n    blue = { payload: 0 };\n}\n\nreturn [red, green, blue];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 340,
+        "wires": [
+            [
+                "9984b5342db5208b"
+            ],
+            [
+                "c469ea1338e49e53"
+            ],
+            [
+                "1a802c851a062205"
+            ]
+        ]
+    },
+    {
+        "id": "c469ea1338e49e53",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 2g",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9984b5342db5208b",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 2r",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "1a802c851a062205",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 2b",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "f1fec1f9a1404116",
+        "type": "function",
+        "z": "618227bec0664813",
+        "name": "function 4",
+        "func": "let red = 0;\nlet green = 0;\nlet blue = 0;\n\nlet input = msg.payload.tempc;\n\nif (input < 5) {\n    red = { payload: 0 };\n    green = { payload: 50 };\n    blue = { payload: 255 };\n} else if (input >= 5 && input < 15) {\n    red = { payload: 0 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 15 && input < 20) {\n    red = { payload: 255 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 20 && input < 30) {\n    red = { payload: 255 };\n    green = { payload: 120 };\n    blue = { payload: 0 };\n} else {\n    red = { payload: 255 };\n    green = { payload: 0 };\n    blue = { payload: 0 };\n}\n\nreturn [red, green, blue];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 620,
+        "wires": [
+            [
+                "aff648a5fbc8abbf"
+            ],
+            [
+                "b0277c73701165c1"
+            ],
+            [
+                "787ffc24b06c2a46"
+            ]
+        ]
+    },
+    {
+        "id": "772430c29602f257",
+        "type": "function",
+        "z": "618227bec0664813",
+        "name": "function 3",
+        "func": "let red = 0;\nlet green = 0;\nlet blue = 0;\n\nlet input = msg.payload.tempc;\n\nif (input < 5) {\n    red = { payload: 0 };\n    green = { payload: 50 };\n    blue = { payload: 255 };\n} else if (input >= 5 && input < 15) {\n    red = { payload: 0 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 15 && input < 20) {\n    red = { payload: 255 };\n    green = { payload: 255 };\n    blue = { payload: 255 };\n} else if (input >= 20 && input < 30) {\n    red = { payload: 255 };\n    green = { payload: 120 };\n    blue = { payload: 0 };\n} else {\n    red = { payload: 255 };\n    green = { payload: 0 };\n    blue = { payload: 0 };\n}\n\nreturn [red, green, blue];",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 520,
+        "y": 480,
+        "wires": [
+            [
+                "5cc56c6b1016e486"
+            ],
+            [
+                "a99704221aab94cf"
+            ],
+            [
+                "58b96caf8c9413ce"
+            ]
+        ]
+    },
+    {
+        "id": "a99704221aab94cf",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 3g",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "5cc56c6b1016e486",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 3r",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "58b96caf8c9413ce",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 3b",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 540,
+        "wires": []
+    },
+    {
+        "id": "aff648a5fbc8abbf",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 4r",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "b0277c73701165c1",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 4g",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 640,
+        "wires": []
+    },
+    {
+        "id": "787ffc24b06c2a46",
+        "type": "debug",
+        "z": "618227bec0664813",
+        "name": "debug 4b",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "456a0262e67f8b46",
+        "type": "comment",
+        "z": "618227bec0664813",
+        "name": "Button (works from the UI)",
+        "info": "",
+        "x": 130,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c70b5fa95102e5c3",
+        "type": "comment",
+        "z": "618227bec0664813",
+        "name": "Click to trigger (in flow)",
+        "info": "",
+        "x": 140,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5cf9095a2c895880",
+        "type": "comment",
+        "z": "618227bec0664813",
+        "name": "Function receives current temperature and routes colors to outputs (R, G, B)",
+        "info": "",
+        "x": 730,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "800171ef3797180f",
+        "type": "comment",
+        "z": "618227bec0664813",
+        "name": "Set city info",
+        "info": "",
+        "x": 350,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "e685077bf843d5d2",
+        "type": "comment",
+        "z": "618227bec0664813",
+        "name": "Change here for MQTT",
+        "info": "",
+        "x": 880,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "d7050d7b3093b8aa",
+        "type": "comment",
+        "z": "618227bec0664813",
+        "name": "If an MQTT topic is connected on its output, then message can be received from a client",
+        "info": "",
+        "x": 770,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "2e50d75e037caf5e",
+        "type": "ui_group",
+        "name": "Weather",
+        "tab": "7bc2382162a47c96",
+        "order": 1,
+        "disp": true,
+        "width": "20",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "7bc2382162a47c96",
+        "type": "ui_tab",
+        "name": "Weather",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,268 @@
+[
+    {
+        "id": "5ed206d201392bbe",
+        "type": "tab",
+        "label": "Speech to Text",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ac20fa4a751f42be",
+        "type": "ui_microphone",
+        "z": "5ed206d201392bbe",
+        "name": "",
+        "group": "dcbd0c536f339437",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "maxLength": "10",
+        "maxRecogLength": "10",
+        "timeslice": 0,
+        "press": "click",
+        "mode": "recog",
+        "interimResults": false,
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "2a363d1c60788553",
+                "57fac32489e44417"
+            ]
+        ]
+    },
+    {
+        "id": "2a363d1c60788553",
+        "type": "ui_text",
+        "z": "5ed206d201392bbe",
+        "group": "dcbd0c536f339437",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 310,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "57fac32489e44417",
+        "type": "sentiment",
+        "z": "5ed206d201392bbe",
+        "name": "",
+        "property": "payload",
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "c2d888f8757e2f10",
+                "6a529c093064301e"
+            ]
+        ]
+    },
+    {
+        "id": "9566caf663a04003",
+        "type": "ui_gauge",
+        "z": "5ed206d201392bbe",
+        "name": "",
+        "group": "dcbd0c536f339437",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Sentiment Analysis",
+        "label": "units",
+        "format": "{{value}}",
+        "min": "-12",
+        "max": "12",
+        "colors": [
+            "#002aff",
+            "#ffffff",
+            "#ffea61"
+        ],
+        "seg1": "Negative",
+        "seg2": "Positive",
+        "className": "",
+        "x": 690,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "c2d888f8757e2f10",
+        "type": "function",
+        "z": "5ed206d201392bbe",
+        "name": "function",
+        "func": "msg.payload = msg.sentiment.score;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 160,
+        "wires": [
+            [
+                "9566caf663a04003",
+                "019673cf51ff2db9",
+                "ece2c3696198b7fc"
+            ]
+        ]
+    },
+    {
+        "id": "6a529c093064301e",
+        "type": "debug",
+        "z": "5ed206d201392bbe",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "019673cf51ff2db9",
+        "type": "debug",
+        "z": "5ed206d201392bbe",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "fe832b2e0f6ce85d",
+        "type": "inject",
+        "z": "5ed206d201392bbe",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "it is a super nice day! i feel so happy",
+        "payloadType": "str",
+        "x": 150,
+        "y": 160,
+        "wires": [
+            [
+                "57fac32489e44417"
+            ]
+        ]
+    },
+    {
+        "id": "ece2c3696198b7fc",
+        "type": "ui_chart",
+        "z": "5ed206d201392bbe",
+        "name": "",
+        "group": "dcbd0c536f339437",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "label": "Chart (1h data)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "-12",
+        "ymax": "12",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 680,
+        "y": 120,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "acefec52703a7d73",
+        "type": "ui_slider",
+        "z": "5ed206d201392bbe",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "dcbd0c536f339437",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "outs": "all",
+        "topic": "topic",
+        "topicType": "msg",
+        "min": "-12",
+        "max": "12",
+        "step": 1,
+        "className": "",
+        "x": 470,
+        "y": 120,
+        "wires": [
+            [
+                "ece2c3696198b7fc"
+            ]
+        ]
+    },
+    {
+        "id": "dcbd0c536f339437",
+        "type": "ui_group",
+        "name": "Speech Recognition",
+        "tab": "b8b89a0bf9531211",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b8b89a0bf9531211",
+        "type": "ui_tab",
+        "name": "Speech to Text",
+        "icon": "dashboard",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,278 @@
+[
+    {
+        "id": "33758339f6ae3c9c",
+        "type": "tab",
+        "label": "RapidAPI",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "1c89443f.7ea18c",
+        "type": "inject",
+        "z": "33758339f6ae3c9c",
+        "name": "timer",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "1",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 120,
+        "wires": [
+            [
+                "e186d8ee.f30b98"
+            ]
+        ]
+    },
+    {
+        "id": "ece085c5.98b2c",
+        "type": "debug",
+        "z": "33758339f6ae3c9c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 490,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "4da1ae82.830e1",
+        "type": "http request",
+        "z": "33758339f6ae3c9c",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 550,
+        "y": 120,
+        "wires": [
+            [
+                "c39adbc6.e8bfb8"
+            ]
+        ]
+    },
+    {
+        "id": "e186d8ee.f30b98",
+        "type": "function",
+        "z": "33758339f6ae3c9c",
+        "name": "ADD API & COUNTRY",
+        "func": "//Change your country (First Letter Capital)\nvar country = \"China\";\n\nmsg.url = \"https://covid-193.p.rapidapi.com/statistics?country=\" + country;\nmsg.payload = \"\"\nmsg.headers = {};\nmsg.headers['x-rapidapi-host'] = 'covid-193.p.rapidapi.com';\nmsg.headers['x-rapidapi-key'] = 'd9d8d29816msh70e692ab8d03bc3p1fef6ajsn3a82ea868b14';\nreturn msg;\n\n// Register to rapidapi.com\n//Get key and write here\n//Change country and go.",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 120,
+        "wires": [
+            [
+                "4da1ae82.830e1"
+            ]
+        ]
+    },
+    {
+        "id": "c39adbc6.e8bfb8",
+        "type": "json",
+        "z": "33758339f6ae3c9c",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 710,
+        "y": 120,
+        "wires": [
+            [
+                "810d37e3.82a218"
+            ]
+        ]
+    },
+    {
+        "id": "810d37e3.82a218",
+        "type": "function",
+        "z": "33758339f6ae3c9c",
+        "name": "Extract Info",
+        "func": "var payload = msg.payload;\nvar country = payload.response[0].country;\nvar date = payload.response[0].day;\nvar total=payload.response[0].cases.total;\nvar newcases = payload.response[0].cases.new;\nvar recovered = payload.response[0].cases.recovered;\nvar deaths = payload.response[0].deaths.total;\nvar tests = payload.response[0].tests.total;\n\nmsg.payload = \n\"Covid-19 : \" + total + \" New: \" + newcases + \"\\r\\n\" + \"\\r\\n\" +\n\"Covid Stats for \" + country + \"\\r\\n\" + \n\"Date: \" + date + \"\\r\\n\" + \n\"\\r\\n\" + \n\"Total Cases : \" + total  + \"\\r\\n\" +\n\"New Cases : \" + newcases + \"\\r\\n\" + \n\"Recovered : \" + recovered + \"\\r\\n\" + \n\"Deaths : \" + deaths  + \"\\r\\n\" + \n\"Tests Done : \" + tests + \"\\r\\n\";\n\nreturn msg;\n\n\n\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 180,
+        "wires": [
+            [
+                "ece085c5.98b2c"
+            ]
+        ]
+    },
+    {
+        "id": "f0bee77b.a34ba8",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "Get Covid-19 Data (Select Country in function : \"ADD API & COUNTRY\"",
+        "info": "",
+        "x": 330,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "b1a8c278a32651da",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "https://developer.ibm.com/tutorials/build-a-node-red-covid-19-dashboard-using-twc-disease-tracker-api/",
+        "info": "",
+        "x": 440,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "bbd4ae0550d79b50",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "https://docs.rapidapi.com/docs/keys",
+        "info": "",
+        "x": 230,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "9113aca7d4dca1e7",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "https://docs.gitguardian.com/secrets-detection/detectors/specifics/rapidapi_key",
+        "info": "",
+        "x": 360,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3750ed47092f4cb6",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "https://github.com/pmmistry/Node-RED-Series/blob/master/Labs/lab_3.md",
+        "info": "",
+        "x": 350,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "424894213fb0705f",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "https://flows.nodered.org/flow/be69d888612e39654cbb642d4e61d216",
+        "info": "",
+        "x": 330,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "b1d2f0076e18ebc5",
+        "type": "inject",
+        "z": "33758339f6ae3c9c",
+        "name": "timer",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "1",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 150,
+        "y": 500,
+        "wires": [
+            [
+                "7cb0f1372e5ad511"
+            ]
+        ]
+    },
+    {
+        "id": "caa06d87e2ef0f6e",
+        "type": "http request",
+        "z": "33758339f6ae3c9c",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 490,
+        "y": 500,
+        "wires": [
+            [
+                "7516bb764342bdc3"
+            ]
+        ]
+    },
+    {
+        "id": "7cb0f1372e5ad511",
+        "type": "function",
+        "z": "33758339f6ae3c9c",
+        "name": "Format Call",
+        "func": "msg.url = \"https://motivational-quotes1.p.rapidapi.com/motivation\";\nmsg.payload = \"\"\nmsg.headers = {};\nmsg.headers['x-rapidapi-host'] = 'motivational-quotes1.p.rapidapi.com';\nmsg.headers['x-rapidapi-key'] = 'd9f27510b8mshd3412d0cf791421p1a6b44jsn81295b7b1caf';\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 310,
+        "y": 500,
+        "wires": [
+            [
+                "caa06d87e2ef0f6e"
+            ]
+        ]
+    },
+    {
+        "id": "7516bb764342bdc3",
+        "type": "debug",
+        "z": "33758339f6ae3c9c",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 670,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "326208c5526b9366",
+        "type": "comment",
+        "z": "33758339f6ae3c9c",
+        "name": "Inspirational Quotes",
+        "info": "",
+        "x": 170,
+        "y": 460,
+        "wires": []
+    }
+]

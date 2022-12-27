@@ -1,0 +1,297 @@
+[
+    {
+        "id": "a1a275217cc65281",
+        "type": "tab",
+        "label": "Sentiment Analysis (bot)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "554fdfc67ed45a66",
+        "type": "sentiment",
+        "z": "a1a275217cc65281",
+        "name": "",
+        "property": "payload",
+        "x": 320,
+        "y": 260,
+        "wires": [
+            [
+                "c32242d6c84d8249",
+                "a7c9c82ac6f442db",
+                "960e66f683e0c257",
+                "6a5016aaf89508f1",
+                "bcd32d5af2c33ff9"
+            ]
+        ]
+    },
+    {
+        "id": "6bddee29c5e72e55",
+        "type": "inject",
+        "z": "a1a275217cc65281",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "It is a great day, I feel amazing",
+        "payloadType": "str",
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "554fdfc67ed45a66"
+            ]
+        ]
+    },
+    {
+        "id": "c32242d6c84d8249",
+        "type": "debug",
+        "z": "a1a275217cc65281",
+        "name": "debug (payload)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "c9b0a82ce7210ba9",
+        "type": "inject",
+        "z": "a1a275217cc65281",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "This is a horrible day, I feel so sad",
+        "payloadType": "str",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "554fdfc67ed45a66"
+            ]
+        ]
+    },
+    {
+        "id": "a7c9c82ac6f442db",
+        "type": "debug",
+        "z": "a1a275217cc65281",
+        "name": "debug (sentiment)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sentiment",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "960e66f683e0c257",
+        "type": "debug",
+        "z": "a1a275217cc65281",
+        "name": "debug (score)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sentiment.score",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "e44a8194e3c6a6d1",
+        "type": "ui_text_input",
+        "z": "a1a275217cc65281",
+        "name": "",
+        "label": "",
+        "tooltip": "",
+        "group": "c02c902aecf5c450",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "sendOnBlur": true,
+        "className": "",
+        "topicType": "msg",
+        "x": 120,
+        "y": 260,
+        "wires": [
+            [
+                "554fdfc67ed45a66"
+            ]
+        ]
+    },
+    {
+        "id": "6a5016aaf89508f1",
+        "type": "ui_text",
+        "z": "a1a275217cc65281",
+        "group": "c02c902aecf5c450",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Sentiment Analysis Result: ",
+        "format": "{{msg.sentiment.score}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 580,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bcd32d5af2c33ff9",
+        "type": "function",
+        "z": "a1a275217cc65281",
+        "name": "function (bot)",
+        "func": "let outputPayload = \"\";\n\nlet input = msg.sentiment.score;\n\nif (input >= -3 && input <=3) {\n    outputPayload = { payload: \"I understand completely\" };\n\n} else if (input < -3) {\n    outputPayload = { payload: \"Don't worry about it. Try to feel better\" };\n\n} else if (input > 3) {\n    outputPayload = { payload: \"Wow! I am so happy for you\" };\n\n} else {\n}\n\nreturn [outputPayload];",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 530,
+        "y": 300,
+        "wires": [
+            [
+                "1f40e720d98adafb",
+                "1c14e01a0152df74",
+                "50c0bc213fdcbe45"
+            ]
+        ]
+    },
+    {
+        "id": "1f40e720d98adafb",
+        "type": "debug",
+        "z": "a1a275217cc65281",
+        "name": "debug (bot response)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "1c14e01a0152df74",
+        "type": "ui_audio",
+        "z": "a1a275217cc65281",
+        "name": "",
+        "group": "c02c902aecf5c450",
+        "voice": "",
+        "always": "",
+        "x": 700,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "50c0bc213fdcbe45",
+        "type": "ui_text",
+        "z": "a1a275217cc65281",
+        "group": "c02c902aecf5c450",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "VA Response:",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 720,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "3b4192cefda8d694",
+        "type": "comment",
+        "z": "a1a275217cc65281",
+        "name": "In this example, a UI text input allows user to type a comment, which is evaluated using sentiment analysis",
+        "info": "",
+        "x": 420,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ced753ca31fcd744",
+        "type": "comment",
+        "z": "a1a275217cc65281",
+        "name": "According to the sentiment score, a function evaluates it and provides a generic response",
+        "info": "",
+        "x": 370,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a3a7cbb332160682",
+        "type": "comment",
+        "z": "a1a275217cc65281",
+        "name": "The example includes also a text-to-speech function",
+        "info": "",
+        "x": 610,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "c02c902aecf5c450",
+        "type": "ui_group",
+        "name": "Sentiment Analysis",
+        "tab": "d28c10f3f48fa0ec",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "d28c10f3f48fa0ec",
+        "type": "ui_tab",
+        "name": "Sentiment Analysis",
+        "icon": "dashboard",
+        "order": 7,
+        "disabled": false,
+        "hidden": false
+    }
+]

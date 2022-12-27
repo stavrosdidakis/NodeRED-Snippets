@@ -1,0 +1,393 @@
+[
+    {
+        "id": "c833eaf67c50f0bc",
+        "type": "tab",
+        "label": "IBM Watson",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "23c2c3025c60338c",
+        "type": "ui_microphone",
+        "z": "c833eaf67c50f0bc",
+        "name": "",
+        "group": "5ae644f6fadb9ee4",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "maxLength": "10",
+        "maxRecogLength": "10",
+        "timeslice": 0,
+        "press": "click",
+        "mode": "recog",
+        "interimResults": false,
+        "x": 110,
+        "y": 120,
+        "wires": [
+            [
+                "12c64b26c1404c74",
+                "7a8c656306aae948",
+                "ed408fb6f2c94897"
+            ]
+        ]
+    },
+    {
+        "id": "12c64b26c1404c74",
+        "type": "ui_text",
+        "z": "c833eaf67c50f0bc",
+        "group": "5ae644f6fadb9ee4",
+        "order": 2,
+        "width": 10,
+        "height": 3,
+        "name": "",
+        "label": "Text: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 290,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "0b2ae8f8f94e9cb8",
+        "type": "debug",
+        "z": "c833eaf67c50f0bc",
+        "name": "debug (payload)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "3f590551a788ba00",
+        "type": "inject",
+        "z": "c833eaf67c50f0bc",
+        "name": "Angry",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "The anger welled inside me, with no where to go. I could feel it eating away at me. I knew if i didn't find a way to release it, it would destroy me.",
+        "payloadType": "str",
+        "x": 130,
+        "y": 160,
+        "wires": [
+            [
+                "7a8c656306aae948",
+                "ed408fb6f2c94897",
+                "12c64b26c1404c74"
+            ]
+        ]
+    },
+    {
+        "id": "7a8c656306aae948",
+        "type": "watson-tone-analyzer-v3",
+        "z": "c833eaf67c50f0bc",
+        "name": "",
+        "tones": "all",
+        "sentences": "true",
+        "contentType": "false",
+        "tone-method": "generalTone",
+        "interface-version": "2016-05-19",
+        "inputlang": "en",
+        "service-endpoint": "https://api.us-south.tone-analyzer.watson.cloud.ibm.com/instances/b58c8954-538a-4dd9-890d-9f9fd1c9acfb",
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "0b2ae8f8f94e9cb8",
+                "fc3a142ec148efbb",
+                "989b9b5dd0d65b62"
+            ]
+        ]
+    },
+    {
+        "id": "fc3a142ec148efbb",
+        "type": "debug",
+        "z": "c833eaf67c50f0bc",
+        "name": "debug (response)",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "response",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "d554c2f86e2e75a3",
+        "type": "ui_text",
+        "z": "c833eaf67c50f0bc",
+        "group": "5ae644f6fadb9ee4",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Tone: ",
+        "format": "{{msg.toptone}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 790,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ed408fb6f2c94897",
+        "type": "watson-translator",
+        "z": "c833eaf67c50f0bc",
+        "name": "",
+        "action": "translate",
+        "basemodel": "ar-en",
+        "domain": "general",
+        "srclang": "en",
+        "destlang": "zh",
+        "apikey": "yyU_tUIITlyczqb9upEBZEBiZ6vxHSpq9cbVxW0jihF-",
+        "custom": "",
+        "domainhidden": "general",
+        "srclanghidden": "en",
+        "destlanghidden": "zh",
+        "basemodelhidden": "ar-en",
+        "customhidden": "",
+        "filetype": "forcedglossary",
+        "trainid": "",
+        "lgparams2": true,
+        "service-endpoint": "https://api.jp-tok.language-translator.watson.cloud.ibm.com/instances/404aea47-f3a4-483a-a29f-b90e8858cabd",
+        "x": 330,
+        "y": 300,
+        "wires": [
+            [
+                "f3207ffd5697ef22"
+            ]
+        ]
+    },
+    {
+        "id": "f3207ffd5697ef22",
+        "type": "ui_text",
+        "z": "c833eaf67c50f0bc",
+        "group": "5ae644f6fadb9ee4",
+        "order": 5,
+        "width": 10,
+        "height": 3,
+        "name": "",
+        "label": "Translation: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 530,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "989b9b5dd0d65b62",
+        "type": "function",
+        "z": "c833eaf67c50f0bc",
+        "name": "Find Top Tone & Score",
+        "func": "if(msg.response.document_tone) {\n\n     var tones = msg.response.document_tone.tone_categories[0].tones;\n     var score = 0;\n\n     // Find the highest tone.\n     for(let i in tones) {\n         if(tones[i].score > score) {\n             score = tones[i].score;\n             msg.toptone = tones[i].tone_id;\n             msg.topscore = score;\n         }\n     }\n     return msg;\n}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 160,
+        "wires": [
+            [
+                "5c9b95c7f25f7148",
+                "21d97902528fd983",
+                "d554c2f86e2e75a3",
+                "6bf6f055d9c5bfbc"
+            ]
+        ]
+    },
+    {
+        "id": "5c9b95c7f25f7148",
+        "type": "debug",
+        "z": "c833eaf67c50f0bc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "topscore",
+        "targetType": "msg",
+        "x": 820,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "21d97902528fd983",
+        "type": "debug",
+        "z": "c833eaf67c50f0bc",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "toptone",
+        "targetType": "msg",
+        "x": 810,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "6bf6f055d9c5bfbc",
+        "type": "ui_text",
+        "z": "c833eaf67c50f0bc",
+        "group": "5ae644f6fadb9ee4",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Score: ",
+        "format": "{{msg.topscore}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 790,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "3d7a3f9d12c43232",
+        "type": "inject",
+        "z": "c833eaf67c50f0bc",
+        "name": "Sad",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Now the standard cure for one who is sunk is to consider those in actual destitution or physical suffering—this is an all-weather beatitude for gloom in general and fairly salutary day-time advice for everyone. But at three o’clock in the morning, a forgotten package has the same tragic importance as a death sentence, and the cure doesn’t work—and in a real dark night of the soul it is always three o’clock in the morning, day after day.",
+        "payloadType": "str",
+        "x": 130,
+        "y": 200,
+        "wires": [
+            [
+                "12c64b26c1404c74",
+                "7a8c656306aae948",
+                "ed408fb6f2c94897"
+            ]
+        ]
+    },
+    {
+        "id": "120e3f6bed830af8",
+        "type": "inject",
+        "z": "c833eaf67c50f0bc",
+        "name": "Joy",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Laughter is wine for the soul - laughter soft, or loud and deep, tinged through with seriousness - the hilarious declaration made by man that life is worth living.",
+        "payloadType": "str",
+        "x": 130,
+        "y": 240,
+        "wires": [
+            [
+                "12c64b26c1404c74",
+                "7a8c656306aae948",
+                "ed408fb6f2c94897"
+            ]
+        ]
+    },
+    {
+        "id": "a5db04f63833fd44",
+        "type": "comment",
+        "z": "c833eaf67c50f0bc",
+        "name": "Get an input using the microphone (via UI)",
+        "info": "",
+        "x": 200,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "9ebaa8e6beb60221",
+        "type": "comment",
+        "z": "c833eaf67c50f0bc",
+        "name": "IBM Tone Analysis",
+        "info": "",
+        "x": 330,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "6bd469d4c72d4134",
+        "type": "comment",
+        "z": "c833eaf67c50f0bc",
+        "name": "IBM Language Translation",
+        "info": "",
+        "x": 350,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "0a88a659a0ab9914",
+        "type": "comment",
+        "z": "c833eaf67c50f0bc",
+        "name": "Get the dominant tone and score",
+        "info": "",
+        "x": 590,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "5ae644f6fadb9ee4",
+        "type": "ui_group",
+        "name": "IBM Watson",
+        "tab": "094c9fbaf1e8af33",
+        "order": 1,
+        "disp": true,
+        "width": 10,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "094c9fbaf1e8af33",
+        "type": "ui_tab",
+        "name": "IBM Watson",
+        "icon": "dashboard",
+        "order": 9,
+        "disabled": false,
+        "hidden": false
+    }
+]

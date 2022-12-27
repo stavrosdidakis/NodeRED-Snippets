@@ -1,0 +1,338 @@
+[
+    {
+        "id": "523c7de1d118b59a",
+        "type": "tab",
+        "label": "Sentiment Analysis (simple)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "15a3117caeca77bb",
+        "type": "sentiment",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "property": "payload",
+        "x": 320,
+        "y": 80,
+        "wires": [
+            [
+                "61e47403c5bc9635",
+                "8a1c95198751ac96",
+                "c5dd3f12aa1469f8"
+            ]
+        ]
+    },
+    {
+        "id": "82fcbcd4d54a33ff",
+        "type": "inject",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "I feel great today, this is such a nice day!",
+        "payloadType": "str",
+        "x": 130,
+        "y": 80,
+        "wires": [
+            [
+                "15a3117caeca77bb"
+            ]
+        ]
+    },
+    {
+        "id": "61e47403c5bc9635",
+        "type": "debug",
+        "z": "523c7de1d118b59a",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8a1c95198751ac96",
+        "type": "debug",
+        "z": "523c7de1d118b59a",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sentiment.score",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "c5dd3f12aa1469f8",
+        "type": "debug",
+        "z": "523c7de1d118b59a",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "sentiment",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "49a4bcd54977bf59",
+        "type": "inject",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "I feel bad today, this is such a horrible day!",
+        "payloadType": "str",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "15a3117caeca77bb"
+            ]
+        ]
+    },
+    {
+        "id": "ceb9ec.ca95ce18",
+        "type": "switch",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "property": "sentiment.score",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "str"
+            },
+            {
+                "t": "lt",
+                "v": "0",
+                "vt": "str"
+            }
+        ],
+        "checkall": "false",
+        "outputs": 3,
+        "x": 590,
+        "y": 320,
+        "wires": [
+            [
+                "71325758.ec838"
+            ],
+            [
+                "50357d68.da32f4"
+            ],
+            [
+                "5367d1d7.0cd618"
+            ]
+        ]
+    },
+    {
+        "id": "9d139ad1.04ff5",
+        "type": "sentiment",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "x": 440,
+        "y": 320,
+        "wires": [
+            [
+                "ceb9ec.ca95ce18",
+                "8da56dc3.23ad88"
+            ]
+        ]
+    },
+    {
+        "id": "c0018daf.1987d8",
+        "type": "inject",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "Message",
+        "payload": " I feel very bad today",
+        "payloadType": "str",
+        "x": 210,
+        "y": 360,
+        "wires": [
+            [
+                "9d139ad1.04ff5"
+            ]
+        ]
+    },
+    {
+        "id": "71325758.ec838",
+        "type": "function",
+        "z": "523c7de1d118b59a",
+        "name": "Positive",
+        "func": "msg.payload = \"Positive!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 740,
+        "y": 280,
+        "wires": [
+            [
+                "794a2a36.9e43ec"
+            ]
+        ]
+    },
+    {
+        "id": "50357d68.da32f4",
+        "type": "function",
+        "z": "523c7de1d118b59a",
+        "name": "Neutral",
+        "func": "msg.payload = \"Neutral\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 740,
+        "y": 320,
+        "wires": [
+            [
+                "794a2a36.9e43ec"
+            ]
+        ]
+    },
+    {
+        "id": "5367d1d7.0cd618",
+        "type": "function",
+        "z": "523c7de1d118b59a",
+        "name": "Negative",
+        "func": "msg.payload = \"Negative!\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 740,
+        "y": 360,
+        "wires": [
+            [
+                "794a2a36.9e43ec"
+            ]
+        ]
+    },
+    {
+        "id": "794a2a36.9e43ec",
+        "type": "debug",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 930,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "64fa9d6.48e43e4",
+        "type": "debug",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 730,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8da56dc3.23ad88",
+        "type": "function",
+        "z": "523c7de1d118b59a",
+        "name": "GetScore",
+        "func": "msg.payload = msg.sentiment.score;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 580,
+        "y": 400,
+        "wires": [
+            [
+                "64fa9d6.48e43e4"
+            ]
+        ]
+    },
+    {
+        "id": "d7295de9.fac018",
+        "type": "inject",
+        "z": "523c7de1d118b59a",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "topic": "Message",
+        "payload": " I feel just ok today",
+        "payloadType": "str",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "9d139ad1.04ff5"
+            ]
+        ]
+    },
+    {
+        "id": "fc23e0b5.fb7c98",
+        "type": "comment",
+        "z": "523c7de1d118b59a",
+        "name": "In the following example, by injecting a message to the Sentiment node, the content is anaysed and the sentiment of the sentense is extracted",
+        "info": "",
+        "x": 530,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "2f5b0f60.95a58",
+        "type": "comment",
+        "z": "523c7de1d118b59a",
+        "name": "The score of the sentiment can be used then to automate other processes (i.e. send its output to the MQTT topic so that another process is triggered)",
+        "info": "",
+        "x": 560,
+        "y": 240,
+        "wires": []
+    }
+]

@@ -1,0 +1,119 @@
+[
+    {
+        "id": "7f81e39d0d7d328f",
+        "type": "tab",
+        "label": "IFTTT",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e7f940c3fa4062ff",
+        "type": "inject",
+        "z": "7f81e39d0d7d328f",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 240,
+        "y": 160,
+        "wires": [
+            [
+                "18daaae4b71d3dd9"
+            ]
+        ]
+    },
+    {
+        "id": "18daaae4b71d3dd9",
+        "type": "function",
+        "z": "7f81e39d0d7d328f",
+        "name": "function",
+        "func": "msg.event = \"iftttEvent\";\nmsg.payload = {\"value1\":\"ima\", \"value2\":\"arts & sciences\", \"value3\":\"nyu-sh\"};\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 160,
+        "wires": [
+            [
+                "24a61cefe86b7686"
+            ]
+        ]
+    },
+    {
+        "id": "30047948291d677f",
+        "type": "debug",
+        "z": "7f81e39d0d7d328f",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 730,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "24a61cefe86b7686",
+        "type": "http request",
+        "z": "7f81e39d0d7d328f",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://maker.ifttt.com/trigger/{{event}}/json/with/key/REPLACE_WITH_YOUR_KEY",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 570,
+        "y": 160,
+        "wires": [
+            [
+                "30047948291d677f"
+            ]
+        ]
+    },
+    {
+        "id": "9544bc061e1f31cb",
+        "type": "comment",
+        "z": "7f81e39d0d7d328f",
+        "name": "Example demonstrating how to implement IFTTT communicatin in Node-RED",
+        "info": "",
+        "x": 430,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "5087d1e6e0e02666",
+        "type": "comment",
+        "z": "7f81e39d0d7d328f",
+        "name": "https://ifttt.com/",
+        "info": "",
+        "x": 240,
+        "y": 120,
+        "wires": []
+    }
+]

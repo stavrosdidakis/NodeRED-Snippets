@@ -1,2 +1,2 @@
 # NodeRED-Snippets
-A collection of snippets using Node-RED
+A collection of snippets using Node-RED: 

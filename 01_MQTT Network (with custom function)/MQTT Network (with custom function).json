@@ -1,0 +1,190 @@
+[
+    {
+        "id": "d1745cd282a575ac",
+        "type": "tab",
+        "label": "MQTT Network (with custom function)",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "0e6304d5622f6ca2",
+        "type": "mqtt in",
+        "z": "d1745cd282a575ac",
+        "name": "",
+        "topic": "/topic1/",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e83622a12bcad81b",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "89a9908c6257bfc7"
+            ]
+        ]
+    },
+    {
+        "id": "89a9908c6257bfc7",
+        "type": "debug",
+        "z": "d1745cd282a575ac",
+        "name": "debug 8",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "baa72885b379cb00",
+        "type": "inject",
+        "z": "d1745cd282a575ac",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "3",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "0",
+        "payloadType": "num",
+        "x": 130,
+        "y": 120,
+        "wires": [
+            [
+                "7880886efb154efa"
+            ]
+        ]
+    },
+    {
+        "id": "7880886efb154efa",
+        "type": "function",
+        "z": "d1745cd282a575ac",
+        "name": "generator",
+        "func": "msg.payload = Math.floor(Math.random() * 100);\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 280,
+        "y": 120,
+        "wires": [
+            [
+                "07b06a0ec92c79ae"
+            ]
+        ]
+    },
+    {
+        "id": "07b06a0ec92c79ae",
+        "type": "mqtt out",
+        "z": "d1745cd282a575ac",
+        "name": "",
+        "topic": "/inTopic/",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e83622a12bcad81b",
+        "x": 440,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "fb75b3f3fb4949a4",
+        "type": "comment",
+        "z": "d1745cd282a575ac",
+        "name": "Generate a random number",
+        "info": "",
+        "x": 220,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f34a30bb6ae17287",
+        "type": "comment",
+        "z": "d1745cd282a575ac",
+        "name": "Send to MQTT broker",
+        "info": "",
+        "x": 480,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "a880b2ac46f8cb08",
+        "type": "comment",
+        "z": "d1745cd282a575ac",
+        "name": "Trigger every 3 seconds",
+        "info": "",
+        "x": 160,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "577be8d49899cb95",
+        "type": "comment",
+        "z": "d1745cd282a575ac",
+        "name": "Receive the MQTT message (from broker)",
+        "info": "",
+        "x": 220,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "736984299ee9b152",
+        "type": "comment",
+        "z": "d1745cd282a575ac",
+        "name": "Show messages to the Debug panel",
+        "info": "",
+        "x": 380,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "e83622a12bcad81b",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "Example",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]

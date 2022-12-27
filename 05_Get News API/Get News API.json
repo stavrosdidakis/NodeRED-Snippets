@@ -1,0 +1,417 @@
+[
+    {
+        "id": "d51cd4ee.9e8e68",
+        "type": "tab",
+        "label": "Get News API",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "90ff5c18.5f95c",
+        "type": "inject",
+        "z": "d51cd4ee.9e8e68",
+        "name": "",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "87f9d584.ad0578"
+            ]
+        ]
+    },
+    {
+        "id": "87f9d584.ad0578",
+        "type": "http request",
+        "z": "d51cd4ee.9e8e68",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://api.thenewsapi.com/v1/news/top?api_token=rPYHrGjZhZKlO14VcAHhReDpcIoucbeTMNcspBVj&locale=us&limit=5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 290,
+        "y": 180,
+        "wires": [
+            [
+                "6c5a20af.b1bcd"
+            ]
+        ]
+    },
+    {
+        "id": "6c5a20af.b1bcd",
+        "type": "json",
+        "z": "d51cd4ee.9e8e68",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 450,
+        "y": 180,
+        "wires": [
+            [
+                "129868e.ae9c897",
+                "8addd2f.90e343",
+                "4f1ee75a2cc689d2"
+            ]
+        ]
+    },
+    {
+        "id": "8addd2f.90e343",
+        "type": "function",
+        "z": "d51cd4ee.9e8e68",
+        "name": "Get News Text",
+        "func": "let getMes = [];\n\n//Get the 5 news articles requested\nfor (let i=0; i<5; i++){\n    getMes[i] = msg.payload.data[i].description;\n}\n\nreturn { payload: getMes };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 180,
+        "wires": [
+            [
+                "64ac6c3d.b8f024"
+            ]
+        ]
+    },
+    {
+        "id": "64ac6c3d.b8f024",
+        "type": "split",
+        "z": "d51cd4ee.9e8e68",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 790,
+        "y": 180,
+        "wires": [
+            [
+                "7f000c64.ca6c14"
+            ]
+        ]
+    },
+    {
+        "id": "c38af6f.8c99f08",
+        "type": "debug",
+        "z": "d51cd4ee.9e8e68",
+        "name": "out 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 1070,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7f000c64.ca6c14",
+        "type": "switch",
+        "z": "d51cd4ee.9e8e68",
+        "name": "route",
+        "property": "parts.index",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "2",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "3",
+                "vt": "str"
+            },
+            {
+                "t": "eq",
+                "v": "4",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 5,
+        "x": 930,
+        "y": 180,
+        "wires": [
+            [
+                "c38af6f.8c99f08"
+            ],
+            [
+                "3e152800.d3fca8"
+            ],
+            [
+                "e492a74b.2ab4a8"
+            ],
+            [
+                "81c9d83248331691"
+            ],
+            [
+                "5245abbb718f04a9"
+            ]
+        ]
+    },
+    {
+        "id": "3e152800.d3fca8",
+        "type": "debug",
+        "z": "d51cd4ee.9e8e68",
+        "name": "out 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1070,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "e492a74b.2ab4a8",
+        "type": "debug",
+        "z": "d51cd4ee.9e8e68",
+        "name": "out 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 1070,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "4dc03445.6438ac",
+        "type": "comment",
+        "z": "d51cd4ee.9e8e68",
+        "name": "https://nodered.org/docs/user-guide/messages",
+        "info": "",
+        "x": 220,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "7754e3f0.0e598c",
+        "type": "comment",
+        "z": "d51cd4ee.9e8e68",
+        "name": "https://cookbook.nodered.org/",
+        "info": "",
+        "x": 170,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "c003b5ee.74f7f8",
+        "type": "comment",
+        "z": "d51cd4ee.9e8e68",
+        "name": "https://www.thenewsapi.com/account/dashboard",
+        "info": "",
+        "x": 220,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "7c5b8fea.827e3",
+        "type": "ui_audio",
+        "z": "d51cd4ee.9e8e68",
+        "name": "",
+        "group": "55f287fd16d6ad5c",
+        "voice": "en-GB",
+        "always": "",
+        "x": 800,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f0286f8e.7b326",
+        "type": "ui_text",
+        "z": "d51cd4ee.9e8e68",
+        "group": "55f287fd16d6ad5c",
+        "order": 3,
+        "width": "6",
+        "height": "3",
+        "name": "",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "x": 790,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "bb26fd8d.38f92",
+        "type": "ui_button",
+        "z": "d51cd4ee.9e8e68",
+        "name": "",
+        "group": "55f287fd16d6ad5c",
+        "order": 1,
+        "width": "6",
+        "height": "1",
+        "passthru": false,
+        "label": "Get News",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "topicType": "str",
+        "x": 100,
+        "y": 220,
+        "wires": [
+            [
+                "87f9d584.ad0578"
+            ]
+        ]
+    },
+    {
+        "id": "129868e.ae9c897",
+        "type": "function",
+        "z": "d51cd4ee.9e8e68",
+        "name": "Get News Text",
+        "func": "let getMes = [];\n\n//Get the 5 news articles requested\nfor (let i=0; i<5; i++){\n    getMes[i] = msg.payload.data[i].description;\n}\n\n//Select one random article to send to the output\nlet getRandom = parseInt(Math.random()*5);\nlet finalMessage = getMes[getRandom];\n\nreturn { payload: finalMessage };",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 620,
+        "y": 220,
+        "wires": [
+            [
+                "7c5b8fea.827e3",
+                "f0286f8e.7b326"
+            ]
+        ]
+    },
+    {
+        "id": "81c9d83248331691",
+        "type": "debug",
+        "z": "d51cd4ee.9e8e68",
+        "name": "out 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "5245abbb718f04a9",
+        "type": "debug",
+        "z": "d51cd4ee.9e8e68",
+        "name": "out 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1070,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "4f1ee75a2cc689d2",
+        "type": "debug",
+        "z": "d51cd4ee.9e8e68",
+        "name": "debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "765310bd0adb8031",
+        "type": "comment",
+        "z": "d51cd4ee.9e8e68",
+        "name": "The example shows how to use the News API to extract 5 random news articles",
+        "info": "",
+        "x": 320,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "86edd36c39444bab",
+        "type": "comment",
+        "z": "d51cd4ee.9e8e68",
+        "name": "Route the articles in 5 different debug messages",
+        "info": "",
+        "x": 920,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "3128f17d455005d2",
+        "type": "comment",
+        "z": "d51cd4ee.9e8e68",
+        "name": "Select one article and convert it to speech",
+        "info": "",
+        "x": 700,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "55f287fd16d6ad5c",
+        "type": "ui_group",
+        "name": "News",
+        "tab": "986fd55aad8cb00d",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "986fd55aad8cb00d",
+        "type": "ui_tab",
+        "name": "News",
+        "icon": "dashboard",
+        "order": 4,
+        "disabled": false,
+        "hidden": false
+    }
+]
