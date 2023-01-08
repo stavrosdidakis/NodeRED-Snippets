@@ -184,7 +184,7 @@
         "method": "POST",
         "ret": "txt",
         "paytoqs": "ignore",
-        "url": "https://api.openweathermap.org/data/2.5/weather?q=Shanghai&units=metric&appid=6b4a465ac9894c63172283b3f271c20c",
+        "url": "https://api.openweathermap.org/data/2.5/weather?q=Shanghai&units=metric&appid=xxx",
         "tls": "",
         "persist": false,
         "proxy": "",
